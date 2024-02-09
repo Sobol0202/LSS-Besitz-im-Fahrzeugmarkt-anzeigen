@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         LSS Besitz im Fahrzeugmarkt anzeigen
 // @namespace    www.leitstellenspiel.de
-// @version      1.0
+// @version      1.1
 // @description  Zeigt im Fahrzeugmarkt die Anzahl der Fahrzeuge für jeden Fahrzeugtyp an
 // @author       MissSobol
 // @match        https://www.leitstellenspiel.de/buildings/*/vehicles/new
-// @grant        none
+// @grant        GM_addStyle
 // ==/UserScript==
 
 (function() {
@@ -28,8 +28,18 @@
                         if (typeId) {
                             // Zähle die Anzahl der Fahrzeuge dieses Typs
                             const count = vehicles.filter(vehicle => vehicle.vehicle_type == typeId).length;
-                            // Füge die Anzahl der Fahrzeuge dem entsprechenden Fahrzeug-Well hinzu
-                            vehicleDiv.insertAdjacentHTML('beforeend', `<p>Im Besitz: ${count}</p>`);
+                            // Füge die Anzahl der Fahrzeuge dem entsprechenden div hinzu
+                            const countElement = document.createElement('p');
+                            countElement.textContent = `Besitz: ${count}`;
+                            vehicleDiv.appendChild(countElement);
+                            // Stile das countElement, um es rechts im Well zu positionieren
+                            GM_addStyle(`
+                                .vehicle_type.well p {
+                                    position: absolute;
+                                    top: 15px;
+                                    right: 25px;
+                                }
+                            `);
                         }
                     });
                 })
