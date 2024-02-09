@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LSS Besitz im Fahrzeugmarkt anzeigen
 // @namespace    www.leitstellenspiel.de
-// @version      1.1
+// @version      1.2
 // @description  Zeigt im Fahrzeugmarkt die Anzahl der Fahrzeuge für jeden Fahrzeugtyp an
 // @author       MissSobol
 // @match        https://www.leitstellenspiel.de/buildings/*/vehicles/new
@@ -36,7 +36,7 @@
                             GM_addStyle(`
                                 .vehicle_type.well p {
                                     position: absolute;
-                                    top: 15px;
+                                    top: 35px;
                                     right: 25px;
                                 }
                             `);
